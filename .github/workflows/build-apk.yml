@@ -11,7 +11,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Распаковать архив (если в репозиторий загружен ZIP)
         run: |
-          if [ ! -f settings.gradle.kts ]; then unzip -q -o HistoryGlobe.zip; fi
+          if [ ! -f settings.gradle.kts ]; then
+            for z in ./*.zip; do unzip -q -o "$z"; done
+          fi
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
